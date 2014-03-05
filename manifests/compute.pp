@@ -26,6 +26,10 @@
 #   Syslog facility to receive log lines.
 #   (Optional) Defaults to LOG_USER.
 #
+# [flat_interface]
+#   By default, the flat interface will be the private_interface unless this parameter is specified.
+#   (Optional) Defaults to undef.
+#
 # === Examples
 #
 # class { 'openstack::compute':
@@ -50,6 +54,7 @@ class openstack::compute (
   # Network
   $public_interface              = undef,
   $private_interface             = undef,
+  $flat_interface                = undef,
   $fixed_range                   = undef,
   $network_manager               = 'nova.network.manager.FlatDHCPManager',
   $network_config                = {},
@@ -204,6 +209,7 @@ class openstack::compute (
     class { 'nova::network':
       private_interface => $private_interface,
       public_interface  => $public_interface,
+      flat_interface    => $flat_interface,
       fixed_range       => $fixed_range,
       floating_range    => false,
       network_manager   => $network_manager,

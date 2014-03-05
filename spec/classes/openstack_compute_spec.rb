@@ -230,6 +230,7 @@ describe 'openstack::compute' do
           :manage_volumes    => true,
           :private_interface => 'eth1',
           :public_interface  => 'eth2',
+          :flat_interface    => 'eth2',
           :fixed_range       => '12.0.0.0/24',
           :network_manager   => 'nova.network.manager.VlanManager',
           :network_config    => {'vlan_interface' => 'eth0'}
@@ -239,6 +240,7 @@ describe 'openstack::compute' do
       it { should contain_class('nova::network').with({
         :private_interface => 'eth1',
         :public_interface  => 'eth2',
+        :flat_interface    => 'eth2',
         :fixed_range       => '12.0.0.0/24',
         :floating_range    => false,
         :network_manager   => 'nova.network.manager.VlanManager',
