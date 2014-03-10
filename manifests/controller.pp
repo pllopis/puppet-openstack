@@ -10,6 +10,7 @@
 #   Supports PKI and UUID.
 # [private_interface] Interface used for vm networking connectivity. Required.
 # [internal_address] Internal address used for management. Required.
+# [flat_interface] Interface to bridge interfaces into in Flat and FlatDHCP network
 # [mysql_root_password] Root password for mysql server.
 # [sql_idle_timeout] Timeout for sql to reap connections.
 #   (Optional) Defaults to undef.
@@ -217,6 +218,7 @@ class openstack::controller (
   # Nova Networking
   $public_interface        = false,
   $private_interface       = false,
+  $flat_interface          = undef,
   $internal_address        = false,
   $admin_address           = false,
   $network_manager         = 'nova.network.manager.FlatDHCPManager',
@@ -456,6 +458,7 @@ class openstack::controller (
     multi_host              => $multi_host,
     public_interface        => $public_interface,
     private_interface       => $private_interface,
+    flat_interface          => $flat_interface,
     # Neutron
     neutron                 => $neutron,
     neutron_user_password   => $neutron_user_password,

@@ -78,6 +78,7 @@ class openstack::nova::controller (
   $multi_host                = false,
   $public_interface          = undef,
   $private_interface         = undef,
+  $flat_interface            = undef,
   # neutron
   $neutron                   = true,
   $neutron_user_password     = false,
@@ -216,6 +217,7 @@ class openstack::nova::controller (
     class { 'nova::network':
       private_interface => $private_interface,
       public_interface  => $public_interface,
+      flat_interface    => $flat_interface,
       fixed_range       => $fixed_range,
       floating_range    => $floating_range,
       network_manager   => $network_manager,
